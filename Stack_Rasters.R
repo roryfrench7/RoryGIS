@@ -3,6 +3,9 @@ library(sp)
 library(spbabel)
 library(raster)
 
+
+## Stack GLCM bands to Multispectral bands for island rasters
+
 setwd("D:/Coconut_Imagery/Combined_Rasters")
 
 glcm_set <- list.files("GLCM/", pattern = ".tif")
@@ -39,7 +42,7 @@ for (i in seq(1, length(glcm_set), 8)) {
     writeRaster(full_band, island_output, overwrite =TRUE)
     
     
-    print(paste0("finished resampling for count ", j, ": ",  glcm_set[i], " at ", Sys.time()))
+    print(paste0("finished stacking for count ", j, ": ",  glcm_set[i], " at ", Sys.time()))
   } else {
     print("GLCM improperly stacked")
   }
