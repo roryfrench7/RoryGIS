@@ -2,9 +2,10 @@ library(sf)
 library(spbabel)
 library(raster)
 
+## Reclassify negative pixels to NA data points in rasters
 
-island_set <- list.files("D:/Coconut_Imagery/Resampled_MS", pattern = ".tif")
-island_list <- list()
+island_set <- list.files("D:/Github/RoryGIS", pattern = ".tif")
+
 
 for (i in 1:length(island_set)) {
   
@@ -19,5 +20,5 @@ for (i in 1:length(island_set)) {
   island_list[i] <- island_output
   print(paste0("finished resampling count ", i, ": ",  island_set[i], " at ", Sys.time()))
 }
-print(island_list)
+
 
