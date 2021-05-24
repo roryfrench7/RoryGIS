@@ -13,6 +13,7 @@ for (i in 1:length(vector_set)){
   
   vector_output <- paste0(substr(vector_set[[i]], 1, nchar(vector_set[[i]])-4), "_reprojected.shp")
   writeOGR(reprojected_vector, dsn = "D:/Github/RoryGIS", layer = vector_output, driver = "ESRI Shapefile")
+  print(paste0("finished reprojecting count ", i, ": ",  vector_set[i], " at ", Sys.time()))
 
 }
 ## Reproject raster files into different coordinate system
@@ -28,5 +29,6 @@ for (i in 1:length(raster_set)){
   
   raster_output <- paste0(substr(raster_set[[i]], 1, nchar(raster_set[[i]])-4), "_reprojected.tif")
   writeRaster(reprojected_raster, raster_output, overwrite = TRUE)
+  print(paste0("finished reprojecting count ", i, ": ",  raster_set[i], " at ", Sys.time()))
   
 }
