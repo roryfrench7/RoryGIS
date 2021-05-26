@@ -1,6 +1,6 @@
 """
 Reproject coordinate system for either raster or vector files. Both can be done for individual files or 
-scripted for multiple files.
+scripted for multiple files. Convert rasters into cloud-optimized geotiffs 
 """
 
 
@@ -9,6 +9,8 @@ library(sp)
 library(raster)
 library(rgdal)
 library(rgeos)
+library(gdalUtilities)
+
 ## Reproject vector files into different coordinate system
 vector_set <- list.files("D:/Github/RoryGIS/shapefiles", pattern = ".shp")
 i=1
@@ -25,11 +27,17 @@ for (i in 1:length(vector_set)){
 
 }
 ## Reproject raster files into different coordinate system
-raster_set <- list.files("D:/Github/RoryGIS/rasters/", pattern = ".tif")
+raster_set <- list.files("D:/Github/RoryGIS", pattern = ".tif")
 i=1
+
+
 for (i in 1:length(raster_set)){
+  ##Turn rasters into cloud optimized geotiffs
+  cloud_optimized_file <- gdal_translate(src_dataset = raster_set[i], 
+                                         dst_dataset = paste0(substr(raster_set[[i]], 1, nchar(raster_set[[i]])-4), "_cloud_optimized.tif"),
+                                         co = matrix(c("TILED=YES", "COPY_SRC_OVERVIEWS=YES", "COMPRESS=LZW"), ncol=1)) ##convert raster into cloud-optimized geotiff with LZW compression and tiling and create COG file into folder
   
-  raster_file <- stack(raster_set[i]) ##read raster
+  raster_file <- stack(cloud_optimized_file) ## read cloud optimized geotiff
   
   coord_sys <- "+init=epsg:3857" ## Specify targeted coordinate system here
   
