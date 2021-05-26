@@ -17,7 +17,7 @@ for (i in 1:length(vector_set)){
 
 }
 ## Reproject raster files into different coordinate system
-raster_set <- list.files("D:/Github/RoryGIS", pattern = ".tif")
+raster_set <- list.files("D:/Github/RoryGIS/rasters/", pattern = ".tif")
 i=1
 for (i in 1:length(raster_set)){
   
