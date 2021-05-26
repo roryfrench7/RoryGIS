@@ -1,3 +1,8 @@
+"""
+These three SQL queries are a brief proof of my understanding of SQL databases.
+"""
+
+
 install.packages("sqldf")
 library(sqldf)
 geochem_data <- read.csv("D:/Github/RoryGIS/whole_rock_geochem.csv")
