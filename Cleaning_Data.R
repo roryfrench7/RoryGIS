@@ -1,3 +1,12 @@
+"""
+Provide some examples of cleaning data for either a data table in csv or shapefile format.Perform tasks such as data
+manipulation, class type conversion, and column renaming. This is used on random example files from my computer to
+demonstrate basic actions taken to clean data.
+"""
+
+
+
+
 library(raster)
 library(rgdal)
 library(dplyr)
